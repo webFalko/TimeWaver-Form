@@ -1,15 +1,18 @@
 // $Id: $
 function zf_ValidateAndSubmit(){
 
-		var response = grecaptcha.getResponse();
-		if(response.length == 0) {
-			document.getElementById("recaptcha_error").style.display = 'initial';				
-			return false;
-		}
 
 		if(zf_CheckMandatory()){
 
 			if(zf_ValidCheck()){
+				
+				// Start validation recaptcha
+				var response = grecaptcha.getResponse();
+				if(response.length == 0) {
+					document.getElementById("recaptcha_error").style.display = 'initial';				
+					return false;
+				}
+				// End validation recaptcha
 
 				if(isSalesIQIntegrationEnabled){
 					zf_addDataToSalesIQ();
